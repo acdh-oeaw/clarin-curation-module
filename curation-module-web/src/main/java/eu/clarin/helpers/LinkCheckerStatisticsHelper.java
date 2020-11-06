@@ -1,6 +1,7 @@
 package eu.clarin.helpers;
 
 import eu.clarin.cmdi.curation.utils.CategoryColor;
+import eu.clarin.cmdi.curation.utils.TimeUtils;
 import eu.clarin.cmdi.rasa.DAO.CheckedLink;
 import eu.clarin.cmdi.rasa.filters.impl.ACDHCheckedLinkFilter;
 import eu.clarin.cmdi.rasa.helpers.statusCodeMapper.Category;
@@ -195,7 +196,7 @@ public class LinkCheckerStatisticsHelper {
 
                 String method = checkedLink.getMethod() == null ? "N/A" : checkedLink.getMethod();
                 sb.append("<b>Method: </b>").append(method).append("<br>");
-                sb.append("<b>Timestamp: </b>").append(checkedLink.getTimestamp());
+                sb.append("<b>Timestamp: </b>").append(TimeUtils.humanizeToDate(checkedLink.getTimestamp()));
                 sb.append("</td>");
                 //info end
 

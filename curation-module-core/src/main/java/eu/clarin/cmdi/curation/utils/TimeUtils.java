@@ -5,6 +5,7 @@ package eu.clarin.cmdi.curation.utils;
 
 import org.apache.log4j.Logger;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -41,6 +42,10 @@ public class TimeUtils {
         timestamp = timestamp.replaceFirst("\\[", " [");
         timestamp = timestamp.replaceFirst("T", " ");
         return timestamp;
+    }
+
+    public static String humanizeToDate(Timestamp timestamp){
+        return humanizeToDate(timestamp.getTime());
     }
 
 }
