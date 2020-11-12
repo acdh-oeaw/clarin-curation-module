@@ -24,7 +24,7 @@ set -e
 echo "delete old data in case not done before..."
 if [ -e $DATA_DIR ]; then
 	chmod -R a+w $DATA_DIR
-	rm -rf $DATA_DIR
+	rm -rf $DATA_DIR/*
 fi
 
 # create new data directory
