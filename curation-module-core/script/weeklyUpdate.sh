@@ -71,6 +71,6 @@ echo "report generation finished. creating value maps..."
 echo "Finished!"
 ELAPSED_TIME=$(($SECONDS - $START_TIME))
 echo "Elapsed time: $(($ELAPSED_TIME/60)) min"
-echo "Please restart curate webapp..."
-#restart curate webapp
-#docker compose clarin TODO need to check
+#Restarting so web app can refresh the reports and etc.
+echo "Restarting all processes in the container..."
+supervisorctl -u sysops -p thepassword restart all
