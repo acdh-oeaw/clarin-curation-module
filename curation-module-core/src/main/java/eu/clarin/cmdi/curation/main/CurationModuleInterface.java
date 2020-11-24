@@ -1,7 +1,6 @@
 package eu.clarin.cmdi.curation.main;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.Collection;
@@ -12,10 +11,13 @@ import javax.xml.transform.TransformerException;
 
 import com.ximpleware.VTDException;
 import eu.clarin.cmdi.curation.exception.ProfileNotFoundException;
-import eu.clarin.cmdi.curation.io.FileSizeException;
+import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.report.Report;
 import org.xml.sax.SAXException;
 
+/**
+ * I'm not sure why this class exists. Most of the methods are one liners. These lines could have been called directly instead.
+ */
 public interface CurationModuleInterface {
 	
     public Report processCMDProfile(String profileId) throws ExecutionException, ProfileNotFoundException, IOException;

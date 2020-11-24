@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.concurrent.ExecutionException;
 
 /**
- *
+ * Pojo of a profile file
  */
 
 public class CMDProfile {

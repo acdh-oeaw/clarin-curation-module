@@ -35,6 +35,9 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * This route is used to curate instances from the homepage (validator navbar button). It processes the sent instance file and returns the generated report from it.
+ */
 @Path("/curate")
 public class Curate {
 

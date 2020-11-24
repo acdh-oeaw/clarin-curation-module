@@ -6,7 +6,7 @@ import eu.clarin.cmdi.curation.entities.CMDInstance;
 import eu.clarin.cmdi.curation.entities.CMDProfile;
 import eu.clarin.cmdi.curation.exception.ProfileNotFoundException;
 import eu.clarin.cmdi.curation.io.CMDFileVisitor;
-import eu.clarin.cmdi.curation.io.FileSizeException;
+import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.report.CMDInstanceReport;
 import eu.clarin.cmdi.curation.report.Report;
 import eu.clarin.cmdi.curation.utils.FileNameEncoder;
@@ -16,7 +16,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,6 +23,9 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * I'm not sure why this class exists. Most of the methods are one liners. These lines could have been called directly instead.
+ */
 public class CurationModule implements CurationModuleInterface {
 
     @Override

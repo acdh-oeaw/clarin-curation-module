@@ -13,6 +13,9 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+/**
+ * This class returns the generated instance reports as html or xml.
+ */
 @Path("/instance")
 public class Instance {
 

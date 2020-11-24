@@ -20,6 +20,9 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This class runs in the beginning of the program. It reads the global constants from the config file, connects to any databases.
+ */
 public class Configuration {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
@@ -54,28 +57,37 @@ public class Configuration {
 
     public static boolean COLLECTION_MODE = false; //when true values wont be extracted for facet "text", saves a lot of time in collection assessment
 
-    private static RasaFactory factory;
+    private static RasaFactory rasaFactory;
 
-    public static void init(String file) throws IOException {
-        logger.info("Initializing configuration from {}", file);
+    /**
+     * Reads config from the given path
+     * @param path to the config
+     * @throws IOException is thrown if config file can't be read
+     */
+    public static void init(String path) throws IOException {
+        logger.info("Initializing configuration from {}", path);
         Properties config = new Properties();
-        config.load(new FileInputStream(file));
+        config.load(new FileInputStream(path));
         readProperties(config);
-        //readProperties(new PropertiesConfiguration(file));
     }
 
+    /**
+     * Reads config from the default config path
+     * @throws IOException is thrown if config file can't be read
+     */
     public static void initDefault() throws IOException {
         logger.info("Initializing configuration with default config file");
         Properties config = new Properties();
         config.load(Configuration.class.getResourceAsStream("/config.properties"));
         readProperties(config);
-        //readProperties(new PropertiesConfiguration("config.properties"));
-
     }
 
+    /**
+     * Closes down resources opened during the program
+     */
     public static void tearDown() {
         logger.info("Stopping Curation Module...");
-        factory.tearDown();
+        rasaFactory.tearDown();
         logger.info("Curation Module stopped.");
     }
 
@@ -120,10 +132,10 @@ public class Configuration {
         DATABASE_PASSWORD = config.getProperty("DATABASE_PASSWORD");
         DATABASE_PASSWORD = DATABASE_PASSWORD == null ? "" : DATABASE_PASSWORD;
 
-        factory = new ACDHRasaFactory(DATABASE_URI, DATABASE_USERNAME, DATABASE_PASSWORD);
-        checkedLinkResource = factory.getCheckedLinkResource();
-        linkToBeCheckedResource = factory.getLinkToBeCheckedResource();
-        statisticsResource = factory.getStatisticsResource();
+        rasaFactory = new ACDHRasaFactory(DATABASE_URI, DATABASE_USERNAME, DATABASE_PASSWORD);
+        checkedLinkResource = rasaFactory.getCheckedLinkResource();
+        linkToBeCheckedResource = rasaFactory.getLinkToBeCheckedResource();
+        statisticsResource = rasaFactory.getStatisticsResource();
 
 
         String vloConfigLocation = config.getProperty("VLO_CONFIG_LOCATION");
@@ -140,6 +152,10 @@ public class Configuration {
         USERAGENT = config.getProperty("USERAGENT");
         BASE_URL = config.getProperty("BASE_URL");
     }
+
+    /**
+     * Lists of status codes assigned to their categories. TODO make it same as stormychecker (as a dependency)
+     */
 
     public static class StormycheckerConstants{
 

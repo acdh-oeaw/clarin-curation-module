@@ -21,20 +21,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+/**
+ * This class checks links when generating instance reports (url checking for collection report generation are all done in stormychecker).
+ * When generating instance reports, curation module queries the database to see if they are there, if not, it checks them with this class
+ * TODO make this the same as stormychecker, i.e create a new project dependency that stormychecker and curation module uses
+ */
 public class HTTPLinkChecker {
 
     private int timeout;
-    private String redirectLink = null;
     private int REDIRECT_FOLLOW_LIMIT;
     private String USERAGENT;
-    private List<Integer> redirectStatusCodes = new ArrayList<>(Arrays.asList(301, 302, 303, 307, 308));
-
-    //this determines what status codes will not be considered broken links. urls with these codes will also not factor into the url-scores
-    private List<Integer> undeterminedStatusCodes = new ArrayList<>(Arrays.asList(401, 405, 429));
 
     private final static Logger logger = LoggerFactory.getLogger(HTTPLinkChecker.class);
 
@@ -44,7 +41,6 @@ public class HTTPLinkChecker {
     }
 
     public HTTPLinkChecker(final int timeout, final int REDIRECT_FOLLOW_LIMIT, final String USERAGENT) {
-        redirectLink = null;
         this.timeout = timeout;
         this.REDIRECT_FOLLOW_LIMIT = REDIRECT_FOLLOW_LIMIT;
         this.USERAGENT = USERAGENT;
@@ -87,7 +83,7 @@ public class HTTPLinkChecker {
 
         int statusCode = response.getStatusLine().getStatusCode();
 
-        if(!StormycheckerConstants.okStatusCodes.contains(statusCode)){//HEAD unsuccessful try GET
+        if (!StormycheckerConstants.okStatusCodes.contains(statusCode)) {//HEAD unsuccessful try GET
             HttpGet get = new HttpGet(url);
             get.setHeader("User-Agent", USERAGENT);
 

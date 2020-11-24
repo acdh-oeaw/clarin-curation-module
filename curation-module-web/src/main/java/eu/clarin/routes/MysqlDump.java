@@ -11,6 +11,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+/**
+ * This class returns the database dump used by the vlo. It is only the status table from the database.
+ */
 @Path("/mysqlDump.sql.gz")
 public class MysqlDump {
 

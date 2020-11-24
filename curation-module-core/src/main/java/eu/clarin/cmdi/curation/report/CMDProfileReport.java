@@ -17,7 +17,7 @@ import eu.clarin.cmdi.curation.xml.XMLMarshaller;
 
 /**
  * A selection of values from a single CMDProfileReport which will form a line in a statistical overview
- *
+ * pojo of profile report, maps to xml
  * @author Wolfgang Walter SAUER (wowasa) &lt;wolfgang.sauer@oeaw.ac.at&gt;
  */
 @XmlRootElement(name = "profile-report")

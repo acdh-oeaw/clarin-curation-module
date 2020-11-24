@@ -11,9 +11,7 @@ import eu.clarin.cmdi.curation.report.Message;
 import eu.clarin.cmdi.curation.report.Severity;
 
 /**
-
- * 
- *         A custom SAX error handler
+ * A custom SAX error handler
  */
 
 public class CMDErrorHandler implements ErrorHandler {

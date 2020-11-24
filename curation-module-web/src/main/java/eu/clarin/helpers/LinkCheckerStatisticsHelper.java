@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-//this class creates a html report
+/**
+ * This class creates the html link checking results list page (when you click on a category) with data directly from the database. It allows to dynamically load url results on to the frontend.
+ */
 public class LinkCheckerStatisticsHelper {
     private static final Logger logger = LoggerFactory.getLogger(LinkCheckerStatisticsHelper.class);
 

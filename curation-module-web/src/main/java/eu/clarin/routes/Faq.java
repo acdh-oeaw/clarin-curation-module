@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This route returns the faq text
+ */
 @Path("/faq")
 public class Faq {
 

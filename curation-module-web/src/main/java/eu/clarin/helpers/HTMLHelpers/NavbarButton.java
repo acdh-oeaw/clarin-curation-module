@@ -1,5 +1,8 @@
 package eu.clarin.helpers.HTMLHelpers;
 
+/**
+ * Pojo for navbar button on the left side
+ */
 public class NavbarButton {
 
     private String link;

@@ -11,10 +11,18 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * Processor for cmd collections, generates collection report
+ */
 public class CollectionProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(CollectionProcessor.class);
 
+    /**
+     * generates collection report from cmd collection
+     * @param collection pojo of collection
+     * @return generated collection
+     */
     public CollectionReport process(CMDCollection collection) {
 
         long start = System.currentTimeMillis();

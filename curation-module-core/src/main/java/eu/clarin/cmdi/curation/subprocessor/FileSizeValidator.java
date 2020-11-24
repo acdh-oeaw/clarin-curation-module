@@ -2,7 +2,7 @@ package eu.clarin.cmdi.curation.subprocessor;
 
 import eu.clarin.cmdi.curation.entities.CMDInstance;
 import eu.clarin.cmdi.curation.instance_parser.InstanceParser;
-import eu.clarin.cmdi.curation.io.FileSizeException;
+import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.main.Configuration;
 import eu.clarin.cmdi.curation.report.CMDInstanceReport;
 import eu.clarin.cmdi.curation.report.CMDInstanceReport.FileReport;
@@ -42,6 +42,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Validates file sizes for collection and instance reports
+ * All this class just to validate file sizes in the report? Couldn't have been a simple if check?
+ */
 public class FileSizeValidator extends CMDSubprocessor {
     private final static Logger logger = LoggerFactory.getLogger(FileSizeValidator.class);
 

@@ -13,6 +13,9 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Stack;
 
+/**
+ * This class visits files of collections (CMDCollection)
+ */
 public class CMDFileVisitor implements FileVisitor<Path> {
 
     private static final Logger logger = LoggerFactory.getLogger(CMDFileVisitor.class);

@@ -14,8 +14,10 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-/*
- * @author Wolfgang Walter SAUER (wowasa) &lt;wolfgang.sauer@oeaw.ac.at&gt;
+/**
+ * pojo of profileS report, maps to xml
+ * This is the file that the profiles tab in the web module reads from
+ * So general statistics of profiles in xml format
  */
 @XmlRootElement(name = "profiles")
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -19,6 +19,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * This class allows access to the file system. It helps read and write files, images, check if files exist etc.
+ */
 public class FileManager {
 
     private static final Logger logger = Logger.getLogger(FileManager.class);

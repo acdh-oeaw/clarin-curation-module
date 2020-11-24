@@ -4,7 +4,9 @@ import eu.clarin.cmdi.rasa.helpers.statusCodeMapper.Category;
 
 import java.util.EnumMap;
 
-//this class assigns categories to colors
+/**
+ * This class assigns categories to colors according to this document: https://docs.google.com/spreadsheets/d/18EyqXjL5-e7tc0kpvTHQNaG5ObXr_WNIfdvrcJRiTAg/edit#gid=0
+ */
 public final class CategoryColor {
     public static EnumMap<Category, String> categoryColor = new EnumMap<>(Category.class);
 

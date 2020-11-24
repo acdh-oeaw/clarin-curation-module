@@ -7,8 +7,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
-
- *
+ * Messages for errors and warnings in reports
  */
 
 @XmlRootElement(name = "details")

@@ -15,6 +15,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This route returns the help text
+ */
 @Path("/help")
 public class Help {
 

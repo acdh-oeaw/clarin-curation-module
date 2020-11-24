@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 /**
- *
+ * This class makes millisecond time measurements human readable into date and time
  */
 public class TimeUtils {
 

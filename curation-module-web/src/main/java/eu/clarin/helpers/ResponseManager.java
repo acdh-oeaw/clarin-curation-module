@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
+/**
+ * This class helps with repsonses going out from the web application. It is a convenience class to help with status codes, response bodies, headers etc.
+ */
 public final class ResponseManager {
 
     private static final Logger logger = Logger.getLogger(ResponseManager.class);

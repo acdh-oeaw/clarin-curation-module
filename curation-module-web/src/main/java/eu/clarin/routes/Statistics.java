@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+/**
+ * This class returns the link checking statistics, be it the general tables or specified categories lists. It uses linkchecker statistics helper to load the long lists dynamically.
+ */
 @Path("/statistics")
 public class Statistics {
 

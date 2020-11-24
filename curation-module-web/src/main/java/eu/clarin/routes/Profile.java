@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Pattern;
 
+/**
+ * This route returns the general profiles table or the specified profile report as html, xml or tsv.
+ */
 @Path("/profile")
 public class Profile {
 

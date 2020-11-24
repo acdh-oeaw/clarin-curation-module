@@ -3,6 +3,9 @@ package eu.clarin.cmdi.curation.report;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ * Severity types for errors and warnings etc.
+ */
 @XmlType
 @XmlEnum
 public enum Severity {

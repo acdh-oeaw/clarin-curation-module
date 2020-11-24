@@ -1,7 +1,7 @@
 package eu.clarin.cmdi.curation.subprocessor;
 
 import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.exception.CategoryException;
+import eu.clarin.cmdi.curation.exception.CategoryExceptionMapper;
 import eu.clarin.cmdi.curation.main.Configuration;
 import eu.clarin.cmdi.curation.report.CMDInstanceReport;
 import eu.clarin.cmdi.curation.report.CMDInstanceReport.URLReport;
@@ -24,6 +24,11 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
+/**
+ * This class extracts the urls from the harvest then checks the database for them. If they are in the database, i.e stormychecker has checked them, it aggregates the results into the url report.
+ * If the urls from the harvest are not in the database, it adds them to the database to be checked by stormychecker.
+ * The results of link checking are aggregated into statistics
+ */
 public class URLValidator extends CMDSubprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(URLValidator.class);
@@ -153,7 +158,7 @@ public class URLValidator extends CMDSubprocessor {
                     } catch (Exception e) {
                         checkedLink.setUrl(url);
                         //ugly hack: category enum in both projects is the same. cant use one in both because java versions dont match. need to update stormychecker to java 11
-                        checkedLink.setCategory(Category.valueOf(CategoryException.getCategoryFromException(e, url).name()));
+                        checkedLink.setCategory(Category.valueOf(CategoryExceptionMapper.getCategoryFromException(e, url).name()));
                         checkedLink.setMessage(e.getMessage());
                         checkedLink.setStatus(null);
                         checkedLink.setByteSize(0);

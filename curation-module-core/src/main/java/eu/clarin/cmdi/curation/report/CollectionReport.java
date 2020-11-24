@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
+ * pojo of collection report, maps to xml
  */
 
 @XmlRootElement(name = "collection-report")

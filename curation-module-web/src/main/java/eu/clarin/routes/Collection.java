@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Pattern;
 
+/**
+ * This route returns the general collections table or the specified collection report as html, xml or tsv.
+ */
 @Path("/collection")
 public class Collection {
 

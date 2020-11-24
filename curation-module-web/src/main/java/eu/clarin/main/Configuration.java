@@ -28,6 +28,9 @@ import java.util.stream.Stream;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
 
+/**
+ * This class is run at the start(deployment) of the web application- It reads global constants from config files, establishes connections with the databases and generally initialises the web app.
+ */
 public class Configuration {
 
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);

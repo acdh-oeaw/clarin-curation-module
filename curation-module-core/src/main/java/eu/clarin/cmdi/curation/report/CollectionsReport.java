@@ -1,21 +1,19 @@
 package eu.clarin.cmdi.curation.report;
 
-import eu.clarin.cmdi.curation.subprocessor.URLValidator;
 import eu.clarin.cmdi.curation.xml.XMLMarshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.bind.annotation.*;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-
+/**
+ * pojo of collectionS report, maps to xml
+ * This is the file that the collection tab in the web module reads from
+ * So general statistics of collections in xml format
+ */
 @XmlRootElement(name = "collections-report")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CollectionsReport implements Report<CollectionsReport> {

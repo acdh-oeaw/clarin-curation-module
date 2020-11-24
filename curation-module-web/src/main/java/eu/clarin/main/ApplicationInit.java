@@ -10,6 +10,9 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.IOException;
 
+/**
+ * This class is called during the start of the web app. It calls the configuration class to load the web app.
+ */
 @WebListener
 public class ApplicationInit implements ServletContextListener {
 

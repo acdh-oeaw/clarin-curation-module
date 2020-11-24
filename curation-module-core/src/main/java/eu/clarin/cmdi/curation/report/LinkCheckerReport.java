@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * pojo of linkchecker report, maps to xml
+ * This is the file that the link checker statistics tab in the web module reads from
+ * So general statistics of link checking in xml format
+ */
 @XmlRootElement(name = "linkchecker-report")
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class LinkCheckerReport implements Report<LinkCheckerReport> {

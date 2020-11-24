@@ -9,6 +9,9 @@ import eu.clarin.cmdi.curation.processor.CollectionProcessor;
 import eu.clarin.cmdi.curation.report.CollectionReport;
 import eu.clarin.cmdi.curation.report.Report;
 
+/**
+ * Pojo of a collection folder harvested from VLO
+ */
 public class CMDCollection {
 
     Deque<CMDInstance> children;

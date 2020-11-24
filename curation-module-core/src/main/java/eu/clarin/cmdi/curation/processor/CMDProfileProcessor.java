@@ -17,12 +17,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * Processor of cmd profiles, generates profile report
  */
 public class CMDProfileProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(CMDProfileProcessor.class);
 
+    /**
+     * generates cmd profile report from a cmdprofile
+     * @param profile pojo of profile
+     * @return generated cmd profile report
+     * @throws ProfileNotFoundException profile not found
+     * @throws ExecutionException
+     * @throws IOException
+     */
     public CMDProfileReport process(CMDProfile profile) throws ProfileNotFoundException, ExecutionException, IOException {
 
         long start = System.currentTimeMillis();

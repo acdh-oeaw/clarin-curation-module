@@ -2,16 +2,13 @@ package eu.clarin.cmdi.curation.processor;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicLong;
 
 import com.ximpleware.VTDException;
 import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.io.FileSizeException;
+import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.main.Configuration;
 import eu.clarin.cmdi.curation.report.CMDInstanceReport;
 import eu.clarin.cmdi.curation.subprocessor.*;
-import eu.clarin.cmdi.curation.utils.TimeUtils;
-import org.checkerframework.checker.units.qual.C;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -19,9 +16,25 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+/**
+ * Processor for cmd instances, generates instance report
+ */
 public class CMDInstanceProcessor {
     private static final Logger logger = LoggerFactory.getLogger(CMDInstanceProcessor.class);
 
+    /**
+     * generates cmd instance report from a cmdinstance
+     * @param record pojo of instance
+     * @param parentName parent collection of the instance(record)
+     * @return generated cmd instance report
+     * @throws FileSizeException
+     * @throws TransformerException
+     * @throws IOException
+     * @throws ExecutionException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws VTDException
+     */
     public CMDInstanceReport process(CMDInstance record, String parentName) throws FileSizeException, TransformerException, IOException, ExecutionException, ParserConfigurationException, SAXException, VTDException {
 
         CMDInstanceReport report = new CMDInstanceReport();

@@ -12,8 +12,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 /**
-
- *
+ * Marshaller for xml
  */
 public class XMLMarshaller<T> {
 

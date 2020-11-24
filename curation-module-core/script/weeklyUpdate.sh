@@ -1,4 +1,5 @@
 #!/bin/bash
+#Weekly Update downloads the harvest from VLO and generates reports from the records. It is currently run twice weekly.
 START_TIME=$SECONDS
 
 WORK_DIR=/usr/local/curation-module

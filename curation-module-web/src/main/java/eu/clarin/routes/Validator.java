@@ -13,6 +13,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
+/**
+ * This route returns to homepage (validator).
+ */
 @Path("/")
 public class Validator {
 

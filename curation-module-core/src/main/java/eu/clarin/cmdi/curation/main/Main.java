@@ -37,10 +37,18 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Starter class of the program
+ */
 public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
+    /**
+     * Reads the cli parameters and then executes the report generation
+     * @param args cli parameters
+     * @throws Exception all the exceptions...something went wrong during the run, check the cause
+     */
     public static void main(String[] args) throws Exception {
 
         Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());//to log uncaught exceptions
@@ -216,6 +224,7 @@ public class Main {
             throw new Exception("Curation module can curate profiles (-p), instances (-i), collection (-c) or collection root (-r)");
     }
 
+    //After each run of the harvest, if some links are in the database but not in the new harvest, they are deleted (moved to history) from the database
     private static void deleteOldLinks() {
         try {
             //delete any urls that have the harvestDate column older than this current one.
@@ -228,6 +237,7 @@ public class Main {
     }
 
 
+    //helper method to marshall pojo reports into xml
     private static void dumpAsXML(Report<?> report, CurationEntityType type) throws Exception {
         JAXBContext jc = JAXBContext.newInstance(report.getClass());
 
@@ -266,7 +276,7 @@ public class Main {
 
 
     }
-
+    //helper method to marshall pojo reports into html via xslt
     private static void dumpAsHTML(Report<?> report, CurationEntityType type) throws TransformerException, JAXBException, IOException {
         Path path = Configuration.OUTPUT_DIRECTORY.resolve("html");
 
@@ -298,6 +308,7 @@ public class Main {
 
     }
 
+    //helper method to marshall pojo reports into tsv
     private static void dumpAsTSV(Report<?> report, CurationEntityType type) throws TransformerException, JAXBException, IOException {
         Path path = Configuration.OUTPUT_DIRECTORY.resolve("tsv");
 
@@ -331,6 +342,7 @@ public class Main {
         return options;
     }
 
+    //create cli options
     private static Options createOptions() {
 
         Option configurationFile = Option.builder("config").argName("file").

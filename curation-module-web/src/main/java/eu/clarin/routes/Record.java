@@ -15,7 +15,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-//this route is to make records available to view
+/**
+ * This route is to make cmd records (not the reports) available to view
+ */
+
 @Path("/record")
 public class Record {
 

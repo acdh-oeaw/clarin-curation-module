@@ -9,6 +9,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import eu.clarin.cmdi.curation.xml.XMLMarshaller;
 
+/**
+ * When there is an error during report generation, this is created instead
+ */
 @XmlRootElement(name = "error-report")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ErrorReport implements Report<CollectionReport> {

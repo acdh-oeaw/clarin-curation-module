@@ -28,6 +28,9 @@ import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.report.Severity;
 import eu.clarin.cmdi.curation.xml.CMDErrorHandler;
 
+/**
+ * Validates instances for xml. is xml valid, are there empty elements, etc.
+ */
 public class XMLValidator extends CMDSubprocessor {
 
     static final Logger logger = LoggerFactory.getLogger(XMLValidator.class);

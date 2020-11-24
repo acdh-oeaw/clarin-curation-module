@@ -1,7 +1,10 @@
-package eu.clarin.cmdi.curation.io;
+package eu.clarin.cmdi.curation.exception;
 
 import eu.clarin.cmdi.curation.main.Configuration;
 
+/**
+ * Size of the file to read is larger than the defined limit in the config file
+ */
 public class FileSizeException extends Exception{
 	
 	private static final long serialVersionUID = 1L;

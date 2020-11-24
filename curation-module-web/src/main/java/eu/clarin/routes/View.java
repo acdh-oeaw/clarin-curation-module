@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This route returns the files in resources folder like js, css or html files or images like logos
+ */
 @Path("/view")
 public class View {
 

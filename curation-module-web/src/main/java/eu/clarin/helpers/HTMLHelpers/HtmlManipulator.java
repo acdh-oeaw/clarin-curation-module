@@ -9,6 +9,9 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This class is used to add content to the generic html template file. So most responses to the front end go through this class.
+ */
 public class HtmlManipulator {
 
     public static String addContentToGenericHTML(String content) throws IOException {

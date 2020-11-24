@@ -3,7 +3,7 @@ package eu.clarin.cmdi.curation.subprocessor;
 import com.ximpleware.VTDException;
 import eu.clarin.cmdi.curation.entities.CMDCollection;
 import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.io.FileSizeException;
+import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.main.Configuration;
 import eu.clarin.cmdi.curation.report.*;
 import eu.clarin.cmdi.curation.report.CollectionReport.*;
@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- *
+ * It aggragets results from single cmd reports into one collection report. It sums up pure values and calculates averages.
  */
 public class CollectionAggregator {
 

@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutionException;
 
 import com.ximpleware.VTDException;
 import eu.clarin.cmdi.curation.instance_parser.ParsedInstance;
-import eu.clarin.cmdi.curation.io.FileSizeException;
+import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.processor.CMDInstanceProcessor;
 import eu.clarin.cmdi.curation.report.CMDInstanceReport;
 import eu.clarin.cmdi.vlo.importer.CMDIData;
@@ -21,6 +21,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+/**
+ * Pojo of a CMD Record File harvested from VLO
+ */
 public class CMDInstance {
 
 

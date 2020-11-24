@@ -27,13 +27,13 @@ import eu.clarin.cmdi.curation.instance_parser.ParsedInstance.InstanceNode;
  */
 public class InstanceParser {
 	
-	private static Transformer tranformer = null;
+	private static Transformer transformer = null;
 	
 	static{
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Source xslt = new StreamSource(InstanceParser.class.getResourceAsStream("/xslt/instanceTransformer.xsl"));		
 		try {
-			tranformer = factory.newTransformer(xslt);
+			transformer = factory.newTransformer(xslt);
 		} catch (TransformerConfigurationException e) {
 			throw new RuntimeException("Unable to open instanceTransformer.xsl", e);
 		}
@@ -43,8 +43,8 @@ public class InstanceParser {
 		Source xml = new StreamSource(is);
 		StringWriter writer = new StringWriter();
 		Result out = new StreamResult(writer);
-		synchronized (tranformer) {
-			tranformer.transform(xml, out);
+		synchronized (transformer) {
+			transformer.transform(xml, out);
 		}
 		
 		String line;

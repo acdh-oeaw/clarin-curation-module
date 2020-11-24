@@ -16,9 +16,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- *
+ * Pojo of report, maps to xml
  */
-
 @XmlRootElement(name = "instance-report")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CMDInstanceReport implements Report<CollectionReport> {
