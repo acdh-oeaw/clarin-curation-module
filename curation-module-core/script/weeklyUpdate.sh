@@ -57,17 +57,6 @@ echo "generating new reports, downloading necessary profiles..."
 java $VM_ARGS -Dprojectname=curate $LOG4J -jar $BIN_DIR/curate.jar -config $CONF_DIR/config.properties -r -path $DATA_DIR/clarin/$CMDI_PATH $DATA_DIR/europeana/$CMDI_PATH
 echo "report generation finished. creating value maps..."
 
-#TODO ask wolfgang was this does?
-# create value maps
-#for name in resourceClass_tf-extended profileName2resourceClass_tf-extended_noResourceClassProfiles collection modality organisation; do
-#	curl -O https://raw.githubusercontent.com/acdh-oeaw/VLO-mapping/master/value-maps/$name.csv
-#	java -jar $BIN_DIR/vlo-mapping-creator.jar $name.csv > $WORK_DIR/value_maps/$name.xml
-#	rm $name.csv
-#done
-
-#echo "recharging curate vlo..."
-#java -cp $BIN_DIR/vlo-importer-4.4.3-importer.jar $VM_ARGS -Dprojectname=vlo-importer $LOG4J -DconfigFile=$CONF_DIR/VloConfig-acdh.xml eu.clarin.cmdi.vlo.importer.MetadataImporterRunner
-
 echo "Finished!"
 ELAPSED_TIME=$(($SECONDS - $START_TIME))
 echo "Elapsed time: $(($ELAPSED_TIME/60)) min"
