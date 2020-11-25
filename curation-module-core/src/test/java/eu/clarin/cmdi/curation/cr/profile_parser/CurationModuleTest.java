@@ -1,12 +1,10 @@
 package eu.clarin.cmdi.curation.cr.profile_parser;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import eu.clarin.cmdi.curation.main.Configuration;
 import eu.clarin.cmdi.curation.main.CurationModule;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.report.Report;
 
 import static org.junit.Assert.*;
@@ -33,7 +31,7 @@ public class CurationModuleTest extends TestBase{
             ex.printStackTrace();
         }
         assertFalse(Configuration.COLLECTION_MODE);
-        assertTrue(report instanceof CMDInstanceReport);        
+        assertTrue(report instanceof CMDIInstanceReport);
 
     }    
     
@@ -55,7 +53,7 @@ public class CurationModuleTest extends TestBase{
             ex.printStackTrace();
         }
         assertFalse(Configuration.COLLECTION_MODE);
-        assertTrue(report instanceof CMDInstanceReport);
+        assertTrue(report instanceof CMDIInstanceReport);
     }
     
     @Test
@@ -75,6 +73,6 @@ public class CurationModuleTest extends TestBase{
             ex.printStackTrace();
         }
         assertFalse(Configuration.COLLECTION_MODE);
-        assertTrue(report instanceof CMDInstanceReport);
+        assertTrue(report instanceof CMDIInstanceReport);
     }
 }

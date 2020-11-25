@@ -16,7 +16,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * This route is to make cmd records (not the reports) available to view
+ * This route is to make cmdi records (not the reports) available to view
  */
 
 @Path("/record")

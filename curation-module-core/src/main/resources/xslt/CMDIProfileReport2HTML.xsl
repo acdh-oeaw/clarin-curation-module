@@ -10,7 +10,7 @@
                     <xsl:value-of select="./header-section/schemaLocation"/>
                 </xsl:variable>
 
-                <h1>CMD Profile Report</h1>
+                <h1>CMDI Profile Report</h1>
 
                 <table class="reportTable">
                     <tr>

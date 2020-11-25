@@ -7,14 +7,13 @@ import java.util.Deque;
 
 import eu.clarin.cmdi.curation.processor.CollectionProcessor;
 import eu.clarin.cmdi.curation.report.CollectionReport;
-import eu.clarin.cmdi.curation.report.Report;
 
 /**
  * Pojo of a collection folder harvested from VLO
  */
-public class CMDCollection {
+public class CMDICollection {
 
-    Deque<CMDInstance> children;
+    Deque<CMDIInstance> children;
 
     long numOfFiles;
     long maxFileSize = 0;
@@ -22,7 +21,7 @@ public class CMDCollection {
     protected Path path = null;
     protected long size = 0;
 
-    public CMDCollection(Path path) {
+    public CMDICollection(Path path) {
         this.path = path;
         children = new ArrayDeque<>();
     }
@@ -31,7 +30,7 @@ public class CMDCollection {
         return new CollectionProcessor().process(this);
     }
 
-    public void addChild(CMDInstance child) {
+    public void addChild(CMDIInstance child) {
         children.add(child);
 
         numOfFiles++;
@@ -43,7 +42,7 @@ public class CMDCollection {
 
     }
 
-    public Deque<CMDInstance> getChildren() {
+    public Deque<CMDIInstance> getChildren() {
         return children;
     }
 

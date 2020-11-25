@@ -20,9 +20,9 @@ import java.util.Collection;
  */
 @XmlRootElement(name = "instance-report")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CMDInstanceReport implements Report<CollectionReport> {
+public class CMDIInstanceReport implements Report<CollectionReport> {
 
-    private static final Logger logger = LoggerFactory.getLogger(CMDInstanceReport.class);
+    private static final Logger logger = LoggerFactory.getLogger(CMDIInstanceReport.class);
 
     public String parentName;
 
@@ -169,7 +169,7 @@ public class CMDInstanceReport implements Report<CollectionReport> {
         mergeWithParent(parentReport, this);
     }
 
-    private static synchronized void mergeWithParent(CollectionReport parentReport, CMDInstanceReport instanceReport) {
+    private static synchronized void mergeWithParent(CollectionReport parentReport, CMDIInstanceReport instanceReport) {
         parentReport.score += instanceReport.score;
         if (instanceReport.score > parentReport.insMaxScore)
             parentReport.insMaxScore = instanceReport.score;
@@ -223,7 +223,7 @@ public class CMDInstanceReport implements Report<CollectionReport> {
 
     @Override
     public void toXML(OutputStream os) {
-        XMLMarshaller<CMDInstanceReport> instanceMarshaller = new XMLMarshaller<>(CMDInstanceReport.class);
+        XMLMarshaller<CMDIInstanceReport> instanceMarshaller = new XMLMarshaller<>(CMDIInstanceReport.class);
         instanceMarshaller.marshal(this, os);
     }
 

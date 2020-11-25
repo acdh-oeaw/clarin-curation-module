@@ -12,17 +12,17 @@ import java.util.stream.Collectors;
 import com.ximpleware.*;
 import eu.clarin.cmdi.curation.cr.CRService;
 import eu.clarin.cmdi.curation.cr.profile_parser.CMDINode;
-import eu.clarin.cmdi.curation.entities.CMDInstance;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
 import eu.clarin.cmdi.curation.instance_parser.ParsedInstance;
 import eu.clarin.cmdi.curation.instance_parser.ParsedInstance.InstanceNode;
 import eu.clarin.cmdi.curation.main.Configuration;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.report.Concept;
 import eu.clarin.cmdi.curation.report.FacetReport.Coverage;
 import eu.clarin.cmdi.curation.report.FacetReport.FacetValueStruct;
 import eu.clarin.cmdi.curation.report.FacetReport.ValueNode;
 import eu.clarin.cmdi.curation.vlo_extensions.FacetMappingCacheFactory;
-import eu.clarin.cmdi.curation.xml.CMDXPathService;
+import eu.clarin.cmdi.curation.xml.CMDIXPathService;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.report.Severity;
 import eu.clarin.cmdi.vlo.importer.mapping.FacetMapping;
@@ -32,16 +32,16 @@ import eu.clarin.cmdi.vlo.importer.processor.ValueSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class InstanceFacetProcessor extends CMDSubprocessor {
+public class InstanceFacetProcessor extends CMDISubprocessor {
 
     private final static Logger logger = LoggerFactory.getLogger(InstanceFacetProcessor.class);
 
     @Override
-    public void process(CMDInstance entity, CMDInstanceReport report)
+    public void process(CMDIInstance entity, CMDIInstanceReport report)
             throws IOException, VTDException, ExecutionException {
 
         // parse instance
-        CMDXPathService xmlService = new CMDXPathService(entity.getPath());
+        CMDIXPathService xmlService = new CMDIXPathService(entity.getPath());
 
         VTDNav nav = xmlService.getNavigator();
 
@@ -58,7 +58,7 @@ public class InstanceFacetProcessor extends CMDSubprocessor {
 
     }
 
-    private Map<Integer, ValueNode> getValueNodesMap(CMDInstance entity, CMDInstanceReport report, VTDNav nav)
+    private Map<Integer, ValueNode> getValueNodesMap(CMDIInstance entity, CMDIInstanceReport report, VTDNav nav)
             throws ExecutionException, VTDException {
         Map<Integer, ValueNode> nodesMap = new LinkedHashMap<Integer, ValueNode>();
 
@@ -88,8 +88,8 @@ public class InstanceFacetProcessor extends CMDSubprocessor {
         return nodesMap;
     }
 
-    private void facetsToNodes(CMDInstance entity, CMDInstanceReport report, Map<Integer, ValueNode> nodesMap,
-            VTDNav nav) throws IOException, ExecutionException {
+    private void facetsToNodes(CMDIInstance entity, CMDIInstanceReport report, Map<Integer, ValueNode> nodesMap,
+                               VTDNav nav) throws IOException, ExecutionException {
 
         FacetMapping facetMapping = FacetMappingCacheFactory.getInstance().getFacetMapping(report.header);
 
@@ -167,7 +167,7 @@ public class InstanceFacetProcessor extends CMDSubprocessor {
 
     }
 
-    public Score calculateScore(CMDInstanceReport report) {
+    public Score calculateScore(CMDIInstanceReport report) {
         return new Score(report.facets.instanceCoverage, 1.0, "facet-mapping", msgs);
     }
 

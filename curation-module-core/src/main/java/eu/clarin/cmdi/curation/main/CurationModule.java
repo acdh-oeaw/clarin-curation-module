@@ -1,13 +1,13 @@
 package eu.clarin.cmdi.curation.main;
 
 import com.ximpleware.VTDException;
-import eu.clarin.cmdi.curation.entities.CMDCollection;
-import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.entities.CMDProfile;
+import eu.clarin.cmdi.curation.entities.CMDICollection;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
+import eu.clarin.cmdi.curation.entities.CMDIProfile;
 import eu.clarin.cmdi.curation.exception.ProfileNotFoundException;
-import eu.clarin.cmdi.curation.io.CMDFileVisitor;
+import eu.clarin.cmdi.curation.io.CMDIFileVisitor;
 import eu.clarin.cmdi.curation.exception.FileSizeException;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.report.Report;
 import eu.clarin.cmdi.curation.utils.FileNameEncoder;
 import eu.clarin.cmdi.curation.utils.HTTPLinkChecker;
@@ -30,12 +30,12 @@ public class CurationModule implements CurationModuleInterface {
 
     @Override
     public Report<?> processCMDProfile(String profileId) throws ExecutionException, ProfileNotFoundException, IOException {
-        return new CMDProfile(Configuration.VLO_CONFIG.getComponentRegistryProfileSchema(profileId), "1.x").generateReport();
+        return new CMDIProfile(Configuration.VLO_CONFIG.getComponentRegistryProfileSchema(profileId), "1.x").generateReport();
     }
 
     @Override
     public Report<?> processCMDProfile(URL schemaLocation) throws ExecutionException, ProfileNotFoundException, IOException {
-        return new CMDProfile(schemaLocation.toString(), "1.x").generateReport();
+        return new CMDIProfile(schemaLocation.toString(), "1.x").generateReport();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CurationModule implements CurationModuleInterface {
         if (Files.notExists(path))
             throw new IOException(path.toString() + " doesn't exist!");
 
-        return new CMDInstance(path, Files.size(path)).generateReport(null);
+        return new CMDIInstance(path, Files.size(path)).generateReport(null);
 
     }
 
@@ -59,10 +59,10 @@ public class CurationModule implements CurationModuleInterface {
         Path cmdiFilePath = Paths.get(System.getProperty("java.io.tmpdir"), path);
         new HTTPLinkChecker(15000, 5, Configuration.USERAGENT).download(url.toString(), cmdiFilePath.toFile());
         long size = Files.size(cmdiFilePath);
-        CMDInstance cmdInstance = new CMDInstance(cmdiFilePath, size);
+        CMDIInstance cmdInstance = new CMDIInstance(cmdiFilePath, size);
         cmdInstance.setUrl(url.toString());
 
-        CMDInstanceReport report = cmdInstance.generateReport(null);
+        CMDIInstanceReport report = cmdInstance.generateReport(null);
 
 //		Files.delete(path);
 
@@ -73,9 +73,9 @@ public class CurationModule implements CurationModuleInterface {
 
     @Override
     public Report<?> processCollection(Path path) throws IOException {
-        CMDFileVisitor entityTree = new CMDFileVisitor();
+        CMDIFileVisitor entityTree = new CMDIFileVisitor();
         Files.walkFileTree(path, entityTree);
-        CMDCollection collection = entityTree.getRoot();
+        CMDICollection collection = entityTree.getRoot();
 
         return collection.generateReport();
     }

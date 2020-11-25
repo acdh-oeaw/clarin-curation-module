@@ -1,29 +1,25 @@
 package eu.clarin.cmdi.curation.processor;
 
-import eu.clarin.cmdi.curation.entities.CMDCollection;
-import eu.clarin.cmdi.curation.main.Configuration;
+import eu.clarin.cmdi.curation.entities.CMDICollection;
 import eu.clarin.cmdi.curation.report.CollectionReport;
-import eu.clarin.cmdi.curation.report.Report;
 import eu.clarin.cmdi.curation.subprocessor.CollectionAggregator;
 import eu.clarin.cmdi.curation.utils.TimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 /**
- * Processor for cmd collections, generates collection report
+ * Processor for cmdi collections, generates collection report
  */
 public class CollectionProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(CollectionProcessor.class);
 
     /**
-     * generates collection report from cmd collection
+     * generates collection report from cmdi collection
      * @param collection pojo of collection
      * @return generated collection
      */
-    public CollectionReport process(CMDCollection collection) {
+    public CollectionReport process(CMDICollection collection) {
 
         long start = System.currentTimeMillis();
 

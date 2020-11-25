@@ -3,8 +3,7 @@
  */
 package eu.clarin.cmdi.curation.subprocessor;
 
-import eu.clarin.cmdi.curation.entities.CMDProfile;
-import eu.clarin.cmdi.curation.report.CMDProfileReport;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport;
 import eu.clarin.cmdi.curation.report.Message;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.vlo_extensions.FacetMappingCacheFactory;
@@ -18,7 +17,7 @@ public class ProfileFacetHandler {
 
     protected Collection<Message> msgs = null;
 
-    public void process(CMDProfileReport report) throws IOException, ExecutionException {
+    public void process(CMDIProfileReport report) throws IOException, ExecutionException {
 
         FacetMapping facetMapping;
         facetMapping = FacetMappingCacheFactory.getInstance().getFacetMapping(report.header);
@@ -26,7 +25,7 @@ public class ProfileFacetHandler {
 
     }
 
-    public Score calculateScore(CMDProfileReport report) {
+    public Score calculateScore(CMDIProfileReport report) {
         return new Score(report.facet.profileCoverage, 1.0, "facets-section", msgs);
     }
 

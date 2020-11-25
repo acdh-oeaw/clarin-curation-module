@@ -3,20 +3,18 @@ import org.junit.Before;
 
 import org.junit.Test;
 
-import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.subprocessor.FileSizeValidator;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileSizeValidatorTest extends TestBase{
-    CMDInstance entity; 
+    CMDIInstance entity;
     
     @Before
     public void init() {
@@ -25,9 +23,9 @@ public class FileSizeValidatorTest extends TestBase{
             
             path = Paths.get(getClass().getClassLoader().getResource("cmdi/cmdi-1_2.xml").toURI());
 
-            entity = new CMDInstance(path, Files.size(path));
+            entity = new CMDIInstance(path, Files.size(path));
             
-            CMDInstanceReport report = new CMDInstanceReport();
+            CMDIInstanceReport report = new CMDIInstanceReport();
             
             FileSizeValidator fsv = new FileSizeValidator();
             

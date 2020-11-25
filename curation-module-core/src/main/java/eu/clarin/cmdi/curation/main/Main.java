@@ -4,7 +4,7 @@ import eu.clarin.cmdi.curation.cr.ProfileHeader;
 import eu.clarin.cmdi.curation.cr.PublicProfiles;
 import eu.clarin.cmdi.curation.entities.CurationEntityType;
 import eu.clarin.cmdi.curation.exception.UncaughtExceptionHandler;
-import eu.clarin.cmdi.curation.report.CMDProfileReport;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport;
 import eu.clarin.cmdi.curation.report.CollectionReport;
 import eu.clarin.cmdi.curation.report.CollectionsReport;
 import eu.clarin.cmdi.curation.report.LinkCheckerReport;
@@ -32,7 +32,6 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -173,8 +172,8 @@ public class Main {
 
                             for (CollectionReport.Profile profile : collectionReport.headerReport.profiles.profiles) {
                                 profileReports.computeIfPresent(profile.name, (key, cmdProfileReport) -> {
-                                    if (cmdProfileReport instanceof CMDProfileReport)
-                                        ((CMDProfileReport) cmdProfileReport).addCollectionUsage(collectionReport.fileReport.provider, profile.count);
+                                    if (cmdProfileReport instanceof CMDIProfileReport)
+                                        ((CMDIProfileReport) cmdProfileReport).addCollectionUsage(collectionReport.fileReport.provider, profile.count);
                                     return cmdProfileReport;
                                 });
                             }

@@ -21,17 +21,17 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 import eu.clarin.cmdi.curation.cr.CRService;
-import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.report.Message;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.report.Severity;
-import eu.clarin.cmdi.curation.xml.CMDErrorHandler;
+import eu.clarin.cmdi.curation.xml.CMDIErrorHandler;
 
 /**
  * Validates instances for xml. is xml valid, are there empty elements, etc.
  */
-public class XMLValidator extends CMDSubprocessor {
+public class XMLValidator extends CMDISubprocessor {
 
     static final Logger logger = LoggerFactory.getLogger(XMLValidator.class);
 
@@ -42,11 +42,11 @@ public class XMLValidator extends CMDSubprocessor {
 
 
     @Override
-    public void process(CMDInstance entity, CMDInstanceReport report) throws ExecutionException, IOException, ParserConfigurationException, SAXException {
+    public void process(CMDIInstance entity, CMDIInstanceReport report) throws ExecutionException, IOException, ParserConfigurationException, SAXException {
 
             ValidatorHandler schemaValidator = new CRService().getSchema(report.header).newValidatorHandler();
             msgs = new ArrayList<>();
-            schemaValidator.setErrorHandler(new CMDErrorHandler(report, msgs));
+            schemaValidator.setErrorHandler(new CMDIErrorHandler(report, msgs));
             schemaValidator.setContentHandler(new CMDIInstanceContentHandler(entity, report));
             // setValidationFeatures(schemaValidator);
             SAXParserFactory parserFactory = SAXParserFactory.newInstance();
@@ -57,13 +57,13 @@ public class XMLValidator extends CMDSubprocessor {
             reader.setContentHandler(schemaValidator);
             reader.parse(new InputSource(entity.getPath().toUri().toString()));
 
-            report.xmlPopulatedReport = new CMDInstanceReport.XMLPopulatedReport();
+            report.xmlPopulatedReport = new CMDIInstanceReport.XMLPopulatedReport();
             report.xmlPopulatedReport.numOfXMLElements = numOfXMLElements;
             report.xmlPopulatedReport.numOfXMLSimpleElements = numOfXMLSimpleElements;
             report.xmlPopulatedReport.numOfXMLEmptyElement = numOfXMLEmptyElement;
             report.xmlPopulatedReport.percOfPopulatedElements = (numOfXMLSimpleElements - numOfXMLEmptyElement) / (double) numOfXMLSimpleElements;
 
-            report.xmlValidityReport = new CMDInstanceReport.XMLValidityReport();
+            report.xmlValidityReport = new CMDIInstanceReport.XMLValidityReport();
             
             for (Message m : msgs) {
 
@@ -82,7 +82,7 @@ public class XMLValidator extends CMDSubprocessor {
 
     }
 
-    public Score calculateScore(CMDInstanceReport report) {
+    public Score calculateScore(CMDIInstanceReport report) {
 
         return new Score(report.xmlPopulatedReport.percOfPopulatedElements, 1.0, "xml-populated-validation", new ArrayList<>());
     }
@@ -112,8 +112,8 @@ public class XMLValidator extends CMDSubprocessor {
 
     class CMDIInstanceContentHandler extends DefaultHandler {
 
-        CMDInstance instance;
-        CMDInstanceReport report;
+        CMDIInstance instance;
+        CMDIInstanceReport report;
 
         String curElem;
         boolean elemWithValue;
@@ -126,7 +126,7 @@ public class XMLValidator extends CMDSubprocessor {
         // this.provider = provider;
         // }
 
-        public CMDIInstanceContentHandler(CMDInstance instance, CMDInstanceReport report) {
+        public CMDIInstanceContentHandler(CMDIInstance instance, CMDIInstanceReport report) {
             this.instance = instance;
             this.report = report;
         }

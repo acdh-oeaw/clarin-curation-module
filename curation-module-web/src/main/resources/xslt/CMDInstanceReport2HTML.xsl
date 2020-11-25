@@ -5,11 +5,11 @@
             <head>
             </head>
             <body>
-                <h1>CMD Record Report</h1>
+                <h1>CMDI Record Report</h1>
 
                 <xsl:variable name="cmdRecord" select="./file-section/location"/>
 
-                <p>CMD Record:
+                <p>CMDI Record:
                     <xsl:choose>
                         <xsl:when test="starts-with($cmdRecord, 'http://') or starts-with($cmdRecord, 'https://')">
                             <a href="{$cmdRecord}" target="_blank">

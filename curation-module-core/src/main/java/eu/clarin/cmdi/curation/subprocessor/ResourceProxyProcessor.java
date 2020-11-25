@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport.ResProxyReport;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport.ResourceType;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport.ResProxyReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport.ResourceType;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.vlo.importer.CMDIData;
 import eu.clarin.cmdi.vlo.importer.Resource;
 import eu.clarin.cmdi.vlo.importer.processor.ValueSet;
 
-public class ResourceProxyProcessor extends CMDSubprocessor {
+public class ResourceProxyProcessor extends CMDISubprocessor {
 
 	@Override
-	public void process(CMDInstance entity, CMDInstanceReport report) {
+	public void process(CMDIInstance entity, CMDIInstanceReport report) {
 	    CMDIData<Map<String, List<ValueSet>>> data = entity.getCMDIData();
 	    
 		report.resProxyReport = new ResProxyReport();
@@ -40,7 +40,7 @@ public class ResourceProxyProcessor extends CMDSubprocessor {
 		
 	}
 	
-	private void addResourceType(List<Resource> resources, CMDInstanceReport report) {
+	private void addResourceType(List<Resource> resources, CMDIInstanceReport report) {
 	    if(resources.isEmpty())
 	        return;
 	    
@@ -59,7 +59,7 @@ public class ResourceProxyProcessor extends CMDSubprocessor {
 	    report.resProxyReport.resourceType.add(resourceType);  
 	}
 
-	public Score calculateScore(CMDInstanceReport report) {
+	public Score calculateScore(CMDIInstanceReport report) {
 		double score = report.resProxyReport.percOfResourcesWithMime + report.resProxyReport.percOfResProxiesWithReferences;
 		return new Score(score, 2.0, "cmd-res-proxy", msgs);		
 	}

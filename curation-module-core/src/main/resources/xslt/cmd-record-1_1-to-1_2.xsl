@@ -142,7 +142,7 @@
         </xsl:choose>
     </xsl:variable>
     
-    <!-- CMD version becomes 1.2 -->
+    <!-- CMDI version becomes 1.2 -->
     <xsl:template match="/cmd0:CMD/@CMDVersion">
         <xsl:attribute name="CMDVersion" select="'1.2'"/>
     </xsl:template>
@@ -250,7 +250,7 @@
         <xsl:attribute name="{substring-after(name(),$escape)}" select="."/>
     </xsl:template>
     
-    <!-- move CMD attributes to the CMD namespace -->
+    <!-- move CMDI attributes to the CMDI namespace -->
     <xsl:template match="/cmd0:CMD/cmd0:Components//@ref" priority="2">
         <xsl:choose>
             <xsl:when test="exists(parent::*/text()[normalize-space()!=''])">

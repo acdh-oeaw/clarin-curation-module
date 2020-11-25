@@ -1,14 +1,12 @@
 package eu.clarin.cmdi.curation.cr.profile_parser;
 
-import eu.clarin.cmdi.curation.entities.CMDInstance;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.subprocessor.FileSizeValidator;
 import eu.clarin.cmdi.curation.subprocessor.InstanceHeaderProcessor;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,8 +14,8 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertEquals;
 
 public class InstanceHeaderProcessorTest extends TestBase {
-    CMDInstance entity;
-    CMDInstanceReport report;
+    CMDIInstance entity;
+    CMDIInstanceReport report;
 
     @Before
     public void load() {
@@ -27,9 +25,9 @@ public class InstanceHeaderProcessorTest extends TestBase {
             path = Paths.get(getClass().getClassLoader().getResource("cmdi/cmdi-1_2.xml").toURI());
 
 
-            entity = new CMDInstance(path, Files.size(path));
+            entity = new CMDIInstance(path, Files.size(path));
 
-            report = new CMDInstanceReport();
+            report = new CMDIInstanceReport();
 
             FileSizeValidator fsv = new FileSizeValidator();
 

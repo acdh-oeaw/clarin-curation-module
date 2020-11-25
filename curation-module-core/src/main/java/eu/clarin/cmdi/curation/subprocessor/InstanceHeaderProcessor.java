@@ -7,15 +7,15 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 
 import eu.clarin.cmdi.curation.cr.CRService;
-import eu.clarin.cmdi.curation.entities.CMDInstance;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
 import eu.clarin.cmdi.curation.main.Configuration;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.report.Severity;
 import eu.clarin.cmdi.vlo.importer.processor.ValueSet;
 
 
-public class InstanceHeaderProcessor extends CMDSubprocessor {
+public class InstanceHeaderProcessor extends CMDISubprocessor {
 
     boolean missingSchema = false;
     boolean schemaInCR = false;
@@ -25,7 +25,7 @@ public class InstanceHeaderProcessor extends CMDSubprocessor {
     boolean missingMdSelfLink = false;
 
     @Override
-    public void process(CMDInstance entity, CMDInstanceReport report) throws IOException, ExecutionException {
+    public void process(CMDIInstance entity, CMDIInstanceReport report) throws IOException, ExecutionException {
         Map<String, List<ValueSet>> keyValuesMap = entity.getCMDIData().getDocument();
 
         CRService crService = new CRService();
@@ -65,7 +65,7 @@ public class InstanceHeaderProcessor extends CMDSubprocessor {
 
         //now obsolete
 /*		if (cmdVersion != null && !cmdVersion.isEmpty() && !cmdVersion.equals("1.2"))
-			addMessage(Severity.WARNING, "Current CMD version is 1.2 but this recordName is using " + cmdVersion);*/
+			addMessage(Severity.WARNING, "Current CMDI version is 1.2 but this recordName is using " + cmdVersion);*/
 
         if (!missingMdprofile) {
             if (!keyValuesMap.get("curation_mdProfile").get(0).getValue().matches(CRService.PROFILE_ID_FORMAT)) {
@@ -91,8 +91,8 @@ public class InstanceHeaderProcessor extends CMDSubprocessor {
         if (missingMdSelfLink) {
             addMessage(Severity.ERROR, "Value for CMD/Header/MdSelfLink is missing");
         } else if (Configuration.COLLECTION_MODE) {// collect mdSelfLinks when assessing collection
-            if (!CMDInstance.mdSelfLinks.add(mdSelfLink))
-                CMDInstance.duplicateMDSelfLink.add(mdSelfLink);
+            if (!CMDIInstance.mdSelfLinks.add(mdSelfLink))
+                CMDIInstance.duplicateMDSelfLink.add(mdSelfLink);
         }
 
         // at this point profile will be processed and cached
@@ -105,7 +105,7 @@ public class InstanceHeaderProcessor extends CMDSubprocessor {
 
     }
 
-    public Score calculateScore(CMDInstanceReport report) {
+    public Score calculateScore(CMDIInstanceReport report) {
         double score = 0;
 
         //schema exists

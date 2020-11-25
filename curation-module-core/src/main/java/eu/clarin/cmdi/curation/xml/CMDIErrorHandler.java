@@ -6,7 +6,7 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.report.Message;
 import eu.clarin.cmdi.curation.report.Severity;
 
@@ -14,12 +14,12 @@ import eu.clarin.cmdi.curation.report.Severity;
  * A custom SAX error handler
  */
 
-public class CMDErrorHandler implements ErrorHandler {
+public class CMDIErrorHandler implements ErrorHandler {
 
-	CMDInstanceReport report;
+	CMDIInstanceReport report;
 	Collection<Message> msgs;
 
-	public CMDErrorHandler(CMDInstanceReport report, Collection<Message> msgs) {
+	public CMDIErrorHandler(CMDIInstanceReport report, Collection<Message> msgs) {
 		this.report = report;
 		this.msgs = msgs;
 	}

@@ -12,12 +12,11 @@ import java.util.stream.Collectors;
 import eu.clarin.cmdi.curation.cr.CRService;
 import eu.clarin.cmdi.curation.cr.profile_parser.CMDINode;
 import eu.clarin.cmdi.curation.cr.profile_parser.ParsedProfile;
-import eu.clarin.cmdi.curation.entities.CMDProfile;
-import eu.clarin.cmdi.curation.report.CMDProfileReport;
-import eu.clarin.cmdi.curation.report.CMDProfileReport.Component;
-import eu.clarin.cmdi.curation.report.CMDProfileReport.Components;
-import eu.clarin.cmdi.curation.report.CMDProfileReport.Concepts;
-import eu.clarin.cmdi.curation.report.CMDProfileReport.Elements;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport.Component;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport.Components;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport.Concepts;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport.Elements;
 import eu.clarin.cmdi.curation.report.Concept;
 import eu.clarin.cmdi.curation.report.Message;
 import eu.clarin.cmdi.curation.report.Score;
@@ -30,7 +29,7 @@ public class ProfileElementsHandler{
 
     protected Collection<Message> msgs = null;
 
-    public void process(CMDProfileReport report) throws ExecutionException {
+    public void process(CMDIProfileReport report) throws ExecutionException {
         ParsedProfile parsedProfile;
 
         parsedProfile = new CRService().getParsedProfile(report.header);
@@ -40,7 +39,7 @@ public class ProfileElementsHandler{
 
     }
 
-    public Score calculateScore(CMDProfileReport report) {
+    public Score calculateScore(CMDIProfileReport report) {
         double score = report.elements.percWithConcept;
         return new Score(score, 1.0, "cmd-concepts-section", msgs);
     }

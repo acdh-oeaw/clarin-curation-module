@@ -10,11 +10,8 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
-import eu.clarin.cmdi.curation.entities.CMDProfile;
-import eu.clarin.cmdi.curation.report.CMDProfileReport;
-import eu.clarin.cmdi.curation.report.ErrorReport;
-import eu.clarin.cmdi.curation.report.Report;
-import eu.clarin.cmdi.curation.report.Score;
+import eu.clarin.cmdi.curation.entities.CMDIProfile;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport;
 
 class ProfileScoreCacheFactory{
 	
@@ -46,10 +43,10 @@ class ProfileScoreCacheFactory{
 		@Override
 		public Double load(ProfileHeader header) throws Exception{
 
-			CMDProfile profile = new CMDProfile(header.getSchemaLocation(), header.getCmdiVersion());			
+			CMDIProfile profile = new CMDIProfile(header.getSchemaLocation(), header.getCmdiVersion());
 			logger.trace("Calculating and caching score for {}", profile);
 
-			CMDProfileReport report = profile.generateReport();
+			CMDIProfileReport report = profile.generateReport();
 
 			
 			if(CRService.PROFILE_MAX_SCORE.equals(Double.NaN)){

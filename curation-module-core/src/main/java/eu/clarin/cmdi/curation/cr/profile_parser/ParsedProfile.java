@@ -131,7 +131,7 @@ public class ParsedProfile {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("CMD Version: " + getCMDIVersion()).append("\n");
+		sb.append("CMDI Version: " + getCMDIVersion()).append("\n");
 		sb.append(header.getId()).append("\t").append(header.getName()).append("\t").append(header.getDescription()).append("\n");		
 		sb.append("\n").append("xpaths:").append("\n");
 		xpaths.forEach((x, n) -> sb.append("\t").append(x + ": " + n).append("\n"));

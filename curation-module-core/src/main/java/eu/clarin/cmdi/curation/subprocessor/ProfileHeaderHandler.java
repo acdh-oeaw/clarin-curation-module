@@ -2,14 +2,13 @@ package eu.clarin.cmdi.curation.subprocessor;
 
 import eu.clarin.cmdi.curation.cr.CRService;
 import eu.clarin.cmdi.curation.cr.ProfileHeader;
-import eu.clarin.cmdi.curation.entities.CMDProfile;
+import eu.clarin.cmdi.curation.entities.CMDIProfile;
 import eu.clarin.cmdi.curation.exception.ProfileNotFoundException;
 import eu.clarin.cmdi.curation.main.Configuration;
-import eu.clarin.cmdi.curation.report.CMDProfileReport;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport;
 import eu.clarin.cmdi.curation.report.Message;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.report.Severity;
-import eu.clarin.cmdi.curation.utils.FileNameEncoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +17,7 @@ public class ProfileHeaderHandler {
 
 	protected Collection<Message> msgs = null;
 
-    public void process(CMDProfile entity, CMDProfileReport report) throws ProfileNotFoundException {
+    public void process(CMDIProfile entity, CMDIProfileReport report) throws ProfileNotFoundException {
         String schemaLocation;
         boolean isLocalFile = false;
 
@@ -62,7 +61,7 @@ public class ProfileHeaderHandler {
                     "The description: " + report.header.getDescription() + " of the profile is not unique");
     }
 
-    public Score calculateScore(CMDProfileReport report) {
+    public Score calculateScore(CMDIProfileReport report) {
         double score = report.header.isPublic() ? 1.0 : 0;
         return new Score(score, 1.0, "header-section", msgs);
     }

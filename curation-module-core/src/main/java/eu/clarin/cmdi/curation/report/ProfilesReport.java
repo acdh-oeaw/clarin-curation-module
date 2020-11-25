@@ -71,9 +71,9 @@ public class ProfilesReport implements Report<ProfilesReport> {
     }
 
     public void addReport(Report report) {
-        if (report instanceof CMDProfileReport) {
+        if (report instanceof CMDIProfileReport) {
 
-            this.profiles.add(new Profile((CMDProfileReport) report));
+            this.profiles.add(new Profile((CMDIProfileReport) report));
 
         }
     }
@@ -108,7 +108,7 @@ public class ProfilesReport implements Report<ProfilesReport> {
 
         }
 
-        public Profile(CMDProfileReport report) {
+        public Profile(CMDIProfileReport report) {
             this.id = report.header.getId();
             this.name = report.header.getName();
             this.reportName = report.getName();

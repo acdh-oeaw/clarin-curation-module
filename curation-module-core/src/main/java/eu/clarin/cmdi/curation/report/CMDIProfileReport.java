@@ -22,7 +22,7 @@ import eu.clarin.cmdi.curation.xml.XMLMarshaller;
  */
 @XmlRootElement(name = "profile-report")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CMDProfileReport implements Report<CMDProfileReport> {
+public class CMDIProfileReport implements Report<CMDIProfileReport> {
 
     @XmlAttribute(name = "score")
     public Double score = 0.0;
@@ -54,15 +54,15 @@ public class CMDProfileReport implements Report<CMDProfileReport> {
     public Collection<Score> segmentScores;
 
     @Override
-    public void mergeWithParent(CMDProfileReport parentReport) {
+    public void mergeWithParent(CMDIProfileReport parentReport) {
         // profile should not have a parent
         throw new UnsupportedOperationException();
     }
 
     @Override
     public void toXML(OutputStream os) {
-        XMLMarshaller<CMDProfileReport> instanceMarshaller = new
-                XMLMarshaller<>(CMDProfileReport.class);
+        XMLMarshaller<CMDIProfileReport> instanceMarshaller = new
+                XMLMarshaller<>(CMDIProfileReport.class);
         instanceMarshaller.marshal(this,
                 os);
     }

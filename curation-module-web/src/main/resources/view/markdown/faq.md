@@ -40,7 +40,7 @@
     The Link Checker checks the availability of a resource at the addresses
     referenced in the metadata. In practice, the resources are URLs (or more commonly links),
     which can be checked via HTTP requests. The Link Checker then saves the responses to the requests in a database. 
-    The links are extracted from CMD Records within the collections.
+    The links are extracted from CMDI Records within the collections.
     Results of the checking can be directly viewed on the [Link Checker Statistics page](https://curate.acdh.oeaw.ac.at/statistics)
     and they also affect the overall score of the collections.
     
@@ -135,7 +135,7 @@
     
 1. **Where does "Expected Content Type" come from?**
 
-    It is extracted from CMD Records. It is however not specified for all links.
+    It is extracted from CMDI Records. It is however not specified for all links.
     
 1. **I have more questions. Where can I ask them?**
 

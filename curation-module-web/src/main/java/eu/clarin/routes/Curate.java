@@ -2,8 +2,8 @@ package eu.clarin.routes;
 
 import eu.clarin.cmdi.curation.main.CurationModule;
 import eu.clarin.cmdi.curation.main.Main;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
-import eu.clarin.cmdi.curation.report.CMDProfileReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIProfileReport;
 import eu.clarin.cmdi.curation.report.ErrorReport;
 import eu.clarin.cmdi.curation.report.Report;
 import eu.clarin.cmdi.curation.utils.FileNameEncoder;
@@ -32,7 +32,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
@@ -134,19 +133,19 @@ public class Curate {
             CurationModule cm = new CurationModule();
 
             if (content.substring(0, 200).contains("xmlns:xs=")) {//it's a profile
-                if (!content.substring(0, 200).contains("http://www.clarin.eu/cmd/1")) //but not a valid cmd 1.2 profile
-                    throw new Exception("profile has no cmd 1.2 namespace declaration");
+                if (!content.substring(0, 200).contains("http://www.clarin.eu/cmd/1")) //but not a valid cmdi 1.2 profile
+                    throw new Exception("profile has no cmdi 1.2 namespace declaration");
                 else
                     report = cm.processCMDProfile(Paths.get(fileLocation).toUri().toURL());
-            } else { // no profile - so processed as CMD instance
+            } else { // no profile - so processed as CMDI instance
                 report = cm.processCMDInstance(Paths.get(fileLocation));
             }
         } catch (MalformedURLException e) {
             return ResponseManager.returnError(400, "Input URL is malformed.");
 
         } catch (Exception e) {
-            logger.error("There was an exception processing the cmd instance: " ,e);
-            return ResponseManager.returnError(400, "There was a problem when processing the input. Please make sure to upload a valid cmd file.");
+            logger.error("There was an exception processing the cmdi instance: " ,e);
+            return ResponseManager.returnError(400, "There was a problem when processing the input. Please make sure to upload a valid cmdi file.");
         }
 
         if (report instanceof ErrorReport) {
@@ -159,9 +158,9 @@ public class Curate {
         save(report, resultFileName);
 
         String resultURL = Configuration.BASE_URL;
-        if (report instanceof CMDProfileReport) {
+        if (report instanceof CMDIProfileReport) {
             resultURL = resultURL + "profile/";
-        } else if (report instanceof CMDInstanceReport) {
+        } else if (report instanceof CMDIInstanceReport) {
             resultURL = resultURL + "instance/";
         }
 
@@ -176,17 +175,17 @@ public class Curate {
     //fileLocation can't be null because it is checked before
     private void setFileLocation(Report<?> report, String fileLocation) {
 
-        if (report instanceof CMDInstanceReport) {
+        if (report instanceof CMDIInstanceReport) {
             if (fileLocation.startsWith("http://") || fileLocation.startsWith("https://")) {
-                ((CMDInstanceReport) report).fileReport.location = fileLocation;
+                ((CMDIInstanceReport) report).fileReport.location = fileLocation;
             } else {
-                ((CMDInstanceReport) report).fileReport.location = "Uploaded file name: " + fileLocation;
+                ((CMDIInstanceReport) report).fileReport.location = "Uploaded file name: " + fileLocation;
             }
-        } else if (report instanceof CMDProfileReport) {
+        } else if (report instanceof CMDIProfileReport) {
             if (fileLocation.startsWith("http://") || fileLocation.startsWith("https://")) {
-                ((CMDProfileReport) report).header.setSchemaLocation(fileLocation);
+                ((CMDIProfileReport) report).header.setSchemaLocation(fileLocation);
             } else {
-                ((CMDProfileReport) report).header.setSchemaLocation("N/A");
+                ((CMDIProfileReport) report).header.setSchemaLocation("N/A");
             }
         }
 
@@ -197,9 +196,9 @@ public class Curate {
     private void save(Report<?> report, String resultName) throws IOException, JAXBException, TransformerException {
 
         String xmlPath;
-        if (report instanceof CMDProfileReport) {
+        if (report instanceof CMDIProfileReport) {
             xmlPath = Configuration.OUTPUT_DIRECTORY + "/xml/profiles/";
-        } else if (report instanceof CMDInstanceReport) {
+        } else if (report instanceof CMDIInstanceReport) {
             xmlPath = Configuration.OUTPUT_DIRECTORY + "/xml/instances/";
         } else {
             throw new IOException("Result wasn't a profile or instance Report. Should not come here.");
@@ -221,9 +220,9 @@ public class Curate {
         transformer.transform(new JAXBSource(JAXBContext.newInstance(report.getClass()), report), result);
 
         String htmlPath = null;
-        if (report instanceof CMDProfileReport) {
+        if (report instanceof CMDIProfileReport) {
             htmlPath = Configuration.OUTPUT_DIRECTORY + "/html/profiles/";
-        } else if (report instanceof CMDInstanceReport) {
+        } else if (report instanceof CMDIInstanceReport) {
             htmlPath = Configuration.OUTPUT_DIRECTORY + "/html/instances/";
         }
         htmlPath = htmlPath + resultName + ".html";

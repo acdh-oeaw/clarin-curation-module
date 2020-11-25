@@ -1,11 +1,11 @@
 package eu.clarin.cmdi.curation.subprocessor;
 
-import eu.clarin.cmdi.curation.entities.CMDInstance;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
 import eu.clarin.cmdi.curation.instance_parser.InstanceParser;
 import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.main.Configuration;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport.FileReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport.FileReport;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.report.Severity;
 import eu.clarin.cmdi.curation.utils.FileNameEncoder;
@@ -46,7 +46,7 @@ import java.util.regex.Pattern;
  * Validates file sizes for collection and instance reports
  * All this class just to validate file sizes in the report? Couldn't have been a simple if check?
  */
-public class FileSizeValidator extends CMDSubprocessor {
+public class FileSizeValidator extends CMDISubprocessor {
     private final static Logger logger = LoggerFactory.getLogger(FileSizeValidator.class);
 
     private static final Pattern _pattern = Pattern.compile("xmlns(:.+?)?=\"http(s)?://www.clarin.eu/cmd/(1)?");
@@ -97,7 +97,7 @@ public class FileSizeValidator extends CMDSubprocessor {
 
 
     @Override
-    public void process(CMDInstance entity, CMDInstanceReport report) throws IOException, TransformerException, FileSizeException {
+    public void process(CMDIInstance entity, CMDIInstanceReport report) throws IOException, TransformerException, FileSizeException {
 
         //convert cmdi 1.1 to 1.2 if necessary
 

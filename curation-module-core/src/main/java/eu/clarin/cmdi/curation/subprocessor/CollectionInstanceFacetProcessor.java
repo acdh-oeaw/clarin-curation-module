@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import java.util.concurrent.ExecutionException;
-import eu.clarin.cmdi.curation.entities.CMDInstance;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
 
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.report.FacetReport.Coverage;
 import eu.clarin.cmdi.curation.vlo_extensions.FacetMappingCacheFactory;
 import eu.clarin.cmdi.curation.report.Score;
@@ -19,11 +19,11 @@ import eu.clarin.cmdi.vlo.importer.mapping.FacetMapping;
 import eu.clarin.cmdi.vlo.importer.processor.ValueSet;
 
 
-public class CollectionInstanceFacetProcessor extends CMDSubprocessor {
+public class CollectionInstanceFacetProcessor extends CMDISubprocessor {
 
 
     @Override
-    public void process(CMDInstance entity, CMDInstanceReport report) throws IOException, ExecutionException {
+    public void process(CMDIInstance entity, CMDIInstanceReport report) throws IOException, ExecutionException {
 
         Map<String, List<ValueSet>> facetValuesMap = entity.getCMDIData().getDocument();
         
@@ -67,7 +67,7 @@ public class CollectionInstanceFacetProcessor extends CMDSubprocessor {
 
     }
 
-    public Score calculateScore(CMDInstanceReport report) {
+    public Score calculateScore(CMDIInstanceReport report) {
         return new Score(report.facets.instanceCoverage, 1.0, "facet-mapping", msgs);
     }
 }

@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import com.ximpleware.VTDException;
-import eu.clarin.cmdi.curation.entities.CMDInstance;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
 import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.main.Configuration;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.curation.subprocessor.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,16 +17,16 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 /**
- * Processor for cmd instances, generates instance report
+ * Processor for cmdi instances, generates instance report
  */
-public class CMDInstanceProcessor {
-    private static final Logger logger = LoggerFactory.getLogger(CMDInstanceProcessor.class);
+public class CMDIInstanceProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(CMDIInstanceProcessor.class);
 
     /**
-     * generates cmd instance report from a cmdinstance
+     * generates cmdi instance report from a cmdinstance
      * @param record pojo of instance
      * @param parentName parent collection of the instance(record)
-     * @return generated cmd instance report
+     * @return generated cmdi instance report
      * @throws FileSizeException
      * @throws TransformerException
      * @throws IOException
@@ -35,9 +35,9 @@ public class CMDInstanceProcessor {
      * @throws SAXException
      * @throws VTDException
      */
-    public CMDInstanceReport process(CMDInstance record, String parentName) throws FileSizeException, TransformerException, IOException, ExecutionException, ParserConfigurationException, SAXException, VTDException {
+    public CMDIInstanceReport process(CMDIInstance record, String parentName) throws FileSizeException, TransformerException, IOException, ExecutionException, ParserConfigurationException, SAXException, VTDException {
 
-        CMDInstanceReport report = new CMDInstanceReport();
+        CMDIInstanceReport report = new CMDIInstanceReport();
 
 //        logger.info("Started report generation for record: " + record.getPath());
         FileSizeValidator fileSizeValidator = new FileSizeValidator();

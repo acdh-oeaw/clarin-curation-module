@@ -12,8 +12,8 @@ import java.util.concurrent.ExecutionException;
 import com.ximpleware.VTDException;
 import eu.clarin.cmdi.curation.instance_parser.ParsedInstance;
 import eu.clarin.cmdi.curation.exception.FileSizeException;
-import eu.clarin.cmdi.curation.processor.CMDInstanceProcessor;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
+import eu.clarin.cmdi.curation.processor.CMDIInstanceProcessor;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
 import eu.clarin.cmdi.vlo.importer.CMDIData;
 import eu.clarin.cmdi.vlo.importer.processor.ValueSet;
 import org.xml.sax.SAXException;
@@ -22,9 +22,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 /**
- * Pojo of a CMD Record File harvested from VLO
+ * Pojo of a CMDI Record File harvested from VLO
  */
-public class CMDInstance {
+public class CMDIInstance {
 
 
     public static Collection<String> mdSelfLinks = Collections.synchronizedCollection(new HashSet<>());
@@ -39,17 +39,17 @@ public class CMDInstance {
 	protected String url;
 
 
-    public CMDInstance(Path path) {
+    public CMDIInstance(Path path) {
         this.path = path;
     }
 
-    public CMDInstance(Path path, long size) {
+    public CMDIInstance(Path path, long size) {
         this.path = path;
         this.size = size;
     }
 
-    public CMDInstanceReport generateReport(String parentName) throws TransformerException, FileSizeException, IOException, ExecutionException, ParserConfigurationException, SAXException, VTDException {
-        return new CMDInstanceProcessor().process(this, parentName);
+    public CMDIInstanceReport generateReport(String parentName) throws TransformerException, FileSizeException, IOException, ExecutionException, ParserConfigurationException, SAXException, VTDException {
+        return new CMDIInstanceProcessor().process(this, parentName);
     }
 
 
@@ -91,7 +91,7 @@ public class CMDInstance {
         String name = path.getName(cnt - 1).toString();
         if (cnt > 1)
             name = path.getName(cnt - 2) + "/" + name;
-        return "CMD Instance: " + name;
+        return "CMDI Instance: " + name;
     }
 
     public CMDIData<Map<String, List<ValueSet>>> getCMDIData() {

@@ -1,8 +1,8 @@
 package eu.clarin.cmdi.curation.subprocessor;
 
 import com.ximpleware.VTDException;
-import eu.clarin.cmdi.curation.entities.CMDCollection;
-import eu.clarin.cmdi.curation.entities.CMDInstance;
+import eu.clarin.cmdi.curation.entities.CMDICollection;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
 import eu.clarin.cmdi.curation.exception.FileSizeException;
 import eu.clarin.cmdi.curation.main.Configuration;
 import eu.clarin.cmdi.curation.report.*;
@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * It aggragets results from single cmd reports into one collection report. It sums up pure values and calculates averages.
+ * It aggragets results from single cmdi reports into one collection report. It sums up pure values and calculates averages.
  */
 public class CollectionAggregator {
 
@@ -30,7 +30,7 @@ public class CollectionAggregator {
 
     protected Collection<Message> msgs = null;
 
-    public void process(CMDCollection collection, CollectionReport report) {
+    public void process(CMDICollection collection, CollectionReport report) {
 
         report.fileReport = new FileReport();
         report.headerReport = new HeaderReport();
@@ -60,12 +60,12 @@ public class CollectionAggregator {
 
         while (!collection.getChildren().isEmpty()) {
 
-            CMDInstance instance = collection.getChildren().pop();
+            CMDIInstance instance = collection.getChildren().pop();
             executor.submit(() ->
             {
                 try {
-                    CMDInstanceReport cmdInstanceReport = instance.generateReport(report.getName());
-                    cmdInstanceReport.mergeWithParent(report);
+                    CMDIInstanceReport CMDIInstanceReport = instance.generateReport(report.getName());
+                    CMDIInstanceReport.mergeWithParent(report);
                 } catch (TransformerException | FileSizeException | IOException | ExecutionException | ParserConfigurationException | SAXException | VTDException e) {
                     logger.error("Error while generating report for instance: " + instance.getPath() + ":" + e.getMessage()+ " Skipping to next instance...");
                     new ErrorReport(instance.getPath().toString(), e.getMessage()).mergeWithParent(report);
@@ -86,11 +86,11 @@ public class CollectionAggregator {
 
         report.calculateAverageValues();
 
-        if (!CMDInstance.duplicateMDSelfLink.isEmpty()) {
-            report.headerReport.duplicatedMDSelfLink = CMDInstance.duplicateMDSelfLink;
+        if (!CMDIInstance.duplicateMDSelfLink.isEmpty()) {
+            report.headerReport.duplicatedMDSelfLink = CMDIInstance.duplicateMDSelfLink;
         }
-        CMDInstance.duplicateMDSelfLink.clear();
-        CMDInstance.mdSelfLinks.clear();
+        CMDIInstance.duplicateMDSelfLink.clear();
+        CMDIInstance.mdSelfLinks.clear();
 
     }
 

@@ -1,10 +1,10 @@
 package eu.clarin.cmdi.curation.subprocessor;
 
-import eu.clarin.cmdi.curation.entities.CMDInstance;
+import eu.clarin.cmdi.curation.entities.CMDIInstance;
 import eu.clarin.cmdi.curation.exception.CategoryExceptionMapper;
 import eu.clarin.cmdi.curation.main.Configuration;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport;
-import eu.clarin.cmdi.curation.report.CMDInstanceReport.URLReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport;
+import eu.clarin.cmdi.curation.report.CMDIInstanceReport.URLReport;
 import eu.clarin.cmdi.curation.report.Score;
 import eu.clarin.cmdi.curation.report.Severity;
 import eu.clarin.cmdi.curation.utils.HTTPLinkChecker;
@@ -29,16 +29,16 @@ import java.util.stream.Stream;
  * If the urls from the harvest are not in the database, it adds them to the database to be checked by stormychecker.
  * The results of link checking are aggregated into statistics
  */
-public class URLValidator extends CMDSubprocessor {
+public class URLValidator extends CMDISubprocessor {
 
     private static final Logger logger = LoggerFactory.getLogger(URLValidator.class);
 
     @Override
-    public void process(CMDInstance entity, CMDInstanceReport report) {
+    public void process(CMDIInstance entity, CMDIInstanceReport report) {
         //do nothing this is not used, not really good coding, is it???
     }
 
-    public void process(CMDInstance entity, CMDInstanceReport report, String parentName) {
+    public void process(CMDIInstance entity, CMDIInstanceReport report, String parentName) {
 
         CMDIData<Map<String, List<ValueSet>>> data = entity.getCMDIData();
 
@@ -191,7 +191,7 @@ public class URLValidator extends CMDSubprocessor {
                     numOfBlockedByRobotsTxtLinks++;
                 }
 
-                CMDInstanceReport.URLElement urlElementReport = new CMDInstanceReport.URLElement().convertFromLinkCheckerURLElement(checkedLink);
+                CMDIInstanceReport.URLElement urlElementReport = new CMDIInstanceReport.URLElement().convertFromLinkCheckerURLElement(checkedLink);
                 report.addURLElement(urlElementReport);
 
 
@@ -202,7 +202,7 @@ public class URLValidator extends CMDSubprocessor {
 
     }
 
-    public Score calculateScore(CMDInstanceReport report) {
+    public Score calculateScore(CMDIInstanceReport report) {
         // it can influence the score, if one collection was done with enabled and the other without
 
         double score = report.urlReport.percOfValidLinks != null && !Double.isNaN(report.urlReport.percOfValidLinks) ? report.urlReport.percOfValidLinks : 0;
