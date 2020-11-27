@@ -38,6 +38,11 @@ the quality of the metadata. Additionally, the results are also used by the
 
 This module is maintained in a [separate code-base](https://github.com/acdh-oeaw/stormychecker).
 
-###FAQ and Feedback
-You can go to our [faq](https://curate.acdh.oeaw.ac.at/faq) page, which tries to answer the most common questions. If your question is not answered, feel free to create an issue on our github page, reachable via [feedback](https://github.com/clarin-eric/clarin-curation-module/issues). 
+### FAQ and Feedback
+You can go to our [faq](https://curate.acdh.oeaw.ac.at/faq) page, which tries to answer the most common questions. If your question is not answered, feel free to create an issue on our github page, reachable via [feedback](https://github.com/clarin-eric/clarin-curation-module/issues).
+
+### Git Branches and Deployment
+* master = production on minerva
+* development = staging on hephaistos
+* clarinDeploy = future production(currently testing) on clarin server 
 
