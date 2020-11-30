@@ -41,8 +41,12 @@ This module is maintained in a [separate code-base](https://github.com/acdh-oeaw
 ### FAQ and Feedback
 You can go to our [faq](https://curate.acdh.oeaw.ac.at/faq) page, which tries to answer the most common questions. If your question is not answered, feel free to create an issue on our github page, reachable via [feedback](https://github.com/clarin-eric/clarin-curation-module/issues).
 
-### Git Branches and Deployment
+### Build and Deployment
+The web application is built as a Docker image and pushed to the Clarin Docker registry via the [docker-curation-module](https://gitlab.com/CLARIN-ERIC/docker-curation-module) project.
+This image is then deployed together with the Stormychecker on the Clarin server via [compose_curation_module_stormychecker](https://gitlab.com/CLARIN-ERIC/compose_curation_module_stormychecker) project.
+
+#### Git Branches
 * master = production on minerva
 * development = staging on hephaistos
-* clarinDeploy = future production(currently testing) on clarin server 
+* clarinDeploy = future production (currently testing) on clarin server 
 
